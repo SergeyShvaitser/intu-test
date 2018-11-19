@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Counter from 'views/components/Counter';
 import LapsList from 'views/components/LapsList';
+import styled from 'styled-components'
 
 class Stopwatch extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
     this.state = {
       isStarted: false,
@@ -58,7 +59,7 @@ class Stopwatch extends Component {
 
   render(){
     return (
-      <div>
+      <Wrapper>
         <h1>Awesome Stopwatch</h1>
         <Counter
           currentTime={this.state.currentTime}
@@ -68,10 +69,19 @@ class Stopwatch extends Component {
           isStarted={this.state.isStarted}
          />
          <LapsList laps={this.state.laps} />
-      </div>
+      </Wrapper>
     )
   };
 
 }
 
 export default Stopwatch;
+
+const Wrapper = styled.div`
+  width: 500px;
+  margin: auto;
+
+  h1{
+    text-align: center;
+  }
+`
