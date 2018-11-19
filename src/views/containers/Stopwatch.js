@@ -7,7 +7,9 @@ class Stopwatch extends Component {
   constructor(){
     super()
 
-    this.state = {}
+    this.state = {
+      currentTime: 0
+    }
 
     this.start = this.start.bind(this)
     this.reset = this.reset.bind(this)
@@ -15,11 +17,16 @@ class Stopwatch extends Component {
   }
 
   start(){
-
+    console.log('works');
+    this.timer = setInterval(() => {
+      this.setState({
+        currentTime: this.state.currentTime + 10
+      })
+    }, 10)
   }
 
   reset(){
-
+    clearInterval(this.timer)
   }
 
   confirmLap(){
@@ -31,6 +38,7 @@ class Stopwatch extends Component {
       <div>
         <h1>Awesome Stopwatch</h1>
         <Counter
+          currentTime={this.state.currentTime}
           start={this.start}
           reset={this.reset}
           confirmLap={this.confirmLap}
