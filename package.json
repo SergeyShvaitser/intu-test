@@ -15,5 +15,11 @@
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar src/scss -o src/css/",
     "watch-css": "npm run build-css && node-sass-chokidar src/scss -o src/css/ --watch"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
