@@ -1,46 +1,60 @@
-import React, { Component } from 'react'
-import Counter from 'views/components/Counter'
-import LapsList from 'views/components/LapsList'
+import React, { Component } from 'react';
+import Counter from 'views/components/Counter';
+import LapsList from 'views/components/LapsList';
 
 class Stopwatch extends Component {
 
   constructor(){
-    super()
+    super();
 
     this.state = {
+      isStarted: false,
       currentTime: 0,
       laps: []
+    };
+
+    this.start = this.start.bind(this);
+    this.reset = this.reset.bind(this);
+    this.confirmLap = this.confirmLap.bind(this);
+  };
+
+  start(isRunning){
+    this.setState({
+      isStarted: !isRunning
+    });
+    if(!isRunning) {
+      this.timer = setInterval(() => {
+        this.setState({
+          currentTime: this.state.currentTime + 10
+        })
+      }, 10);
+    } else {
+      clearInterval(this.timer);
     }
-
-    this.start = this.start.bind(this)
-    this.reset = this.reset.bind(this)
-    this.confirmLap = this.confirmLap.bind(this)
   }
 
-  start(){
-    this.timer = setInterval(() => {
-      this.setState({
-        currentTime: this.state.currentTime + 10
-      })
-    }, 10)
-  }
-
-  reset(){
-    clearInterval(this.timer)
-  }
+  reset(isReseted){
+    clearInterval(this.timer);
+    delete this.lastLapTime;
+    this.setState({
+      isStarted: false,
+      currentTime: 0,
+      laps: []
+    });
+  };
 
   confirmLap(){
-    if(!this.lastLapPoint) {
+    if(!this.lastLapTime) {
       this.setState({
         laps: [this.state.currentTime, ...this.state.laps]
-      })
+      });
     } else {
       this.setState({
-        laps: [this.state.currentTime - this.lastLapPoint, ...this.state.laps]
-      })
+        laps: [this.state.currentTime - this.lastLapTime, ...this.state.laps]
+      });
     }
-    this.lastLapPoint = this.state.currentTime;
-  }
+    this.lastLapTime = this.state.currentTime;
+  };
 
   render(){
     return (
@@ -51,12 +65,13 @@ class Stopwatch extends Component {
           start={this.start}
           reset={this.reset}
           confirmLap={this.confirmLap}
+          isStarted={this.state.isStarted}
          />
          <LapsList laps={this.state.laps} />
       </div>
     )
-  }
+  };
 
 }
 
-export default Stopwatch
+export default Stopwatch;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Stopwatch from 'views/containers/Stopwatch'
+import Stopwatch from 'views/containers/Stopwatch';
 
 class App extends Component {
     render() {
@@ -7,6 +7,6 @@ class App extends Component {
             <Stopwatch />
         );
     }
-}
+};
 
 export default App;
