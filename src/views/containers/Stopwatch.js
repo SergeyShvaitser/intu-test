@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react'
+import Counter from 'views/components/Counter'
 
 class Stopwatch extends Component {
 
@@ -29,6 +30,11 @@ class Stopwatch extends Component {
     return (
       <div>
         <h1>Awesome Stopwatch</h1>
+        <Counter
+          start={this.start}
+          reset={this.reset}
+          confirmLap={this.confirmLap}
+         />
       </div>
     )
   }
