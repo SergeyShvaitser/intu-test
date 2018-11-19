@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import Stopwatch from 'views/containers/Stopwatch'
 
 class App extends Component {
     render() {
         return (
-            <div>Please see the Readme for details of this test.</div>
+            <Stopwatch />
         );
     }
 }
