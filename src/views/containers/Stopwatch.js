@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import Counter from 'views/components/Counter'
 
@@ -17,7 +16,6 @@ class Stopwatch extends Component {
   }
 
   start(){
-    console.log('works');
     this.timer = setInterval(() => {
       this.setState({
         currentTime: this.state.currentTime + 10
