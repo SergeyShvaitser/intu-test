@@ -9,6 +9,7 @@ const Counter = ({currentTime, start, reset, confirmLap}) => (
     <p>{formatTime(currentTime)}</p>
     <Button onClick={start}>Start</Button>
     <Button onClick={reset}>Reset</Button>
+    <Button onClick={confirmLap}>Lap</Button>
   </div>
 )
 

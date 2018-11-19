@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Counter from 'views/components/Counter'
+import LapsList from 'views/components/LapsList'
 
 class Stopwatch extends Component {
 
@@ -7,7 +8,8 @@ class Stopwatch extends Component {
     super()
 
     this.state = {
-      currentTime: 0
+      currentTime: 0,
+      laps: []
     }
 
     this.start = this.start.bind(this)
@@ -28,7 +30,16 @@ class Stopwatch extends Component {
   }
 
   confirmLap(){
-
+    if(!this.lastLapPoint) {
+      this.setState({
+        laps: [this.state.currentTime, ...this.state.laps]
+      })
+    } else {
+      this.setState({
+        laps: [this.state.currentTime - this.lastLapPoint, ...this.state.laps]
+      })
+    }
+    this.lastLapPoint = this.state.currentTime;
   }
 
   render(){
@@ -41,6 +52,7 @@ class Stopwatch extends Component {
           reset={this.reset}
           confirmLap={this.confirmLap}
          />
+         <LapsList laps={this.state.laps} />
       </div>
     )
   }
