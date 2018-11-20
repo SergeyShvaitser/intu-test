@@ -38,6 +38,7 @@ const StyledButton = styled.button`
 
   &:focus {
     background-color: none;
+    outline:0;
   }
 
   &:disabled {

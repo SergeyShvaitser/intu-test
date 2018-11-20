@@ -5,8 +5,8 @@ import styled from 'styled-components'
 
 class Stopwatch extends Component {
 
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
 
     this.state = {
       isStarted: false,
@@ -83,5 +83,7 @@ const Wrapper = styled.div`
 
   h1{
     text-align: center;
+    color: #3b09a785;
+    font-weight: 500;
   }
 `
