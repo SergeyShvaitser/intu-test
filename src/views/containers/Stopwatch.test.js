@@ -11,12 +11,21 @@ describe('Stopwatch Container', () => {
     expect(driver.get.Counter().length).toEqual(1);
   })
 
+  test('should render Actions', () => {
+    expect(driver.get.Actions().length).toEqual(1);
+  })
+
   test('should render LapsList', () => {
     expect(driver.get.LapsList().length).toEqual(1);
   })
 
   test('should render Counter with correct props', () => {
     const component = driver.get.Counter()
+    expect(component.prop('currentTime')).toEqual(driver.mockData.currentTime());
+  })
+
+  test('should render Actions with correct props', () => {
+    const component = driver.get.Actions()
 
     expect(component.prop('currentTime')).toEqual(driver.mockData.currentTime());
     expect(component.prop('start')).toEqual(driver.get.instance().start);

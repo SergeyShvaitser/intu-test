@@ -1,24 +1,35 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import formatTime from 'utils/formatTime';
 import styled from 'styled-components'
 
-const LapsList = ({laps}) => (
-  laps.length > 0 && (
-    <Wrapper>
-      <h2>Laps list:</h2>
-      <LapsWrapper>
-        {laps.map((lap, i) => (
-          <p key={i}>{`${laps.length - i}. ${formatTime(lap)}`}</p>
-        ))}
-      </LapsWrapper>
-    </Wrapper>
-  )
-);
+class LapsList extends Component {
 
-LapsList.propTypes = {
-  laps: PropTypes.array.isRequired,
-};
+  static propTypes = {
+    laps: PropTypes.array.isRequired,
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    return this.props.laps.length !== nextProps.laps.length;
+  }
+
+  render(){
+    const { laps } = this.props;
+    return (
+      laps.length > 0 && (
+        <Wrapper>
+          <h2>Laps list:</h2>
+          <LapsWrapper>
+            {laps.map((lap, i) => (
+              <p key={i}>{`${laps.length - i}. ${formatTime(lap)}`}</p>
+            ))}
+          </LapsWrapper>
+        </Wrapper>
+      )
+    );
+  }
+
+}
 
 export default LapsList;
 

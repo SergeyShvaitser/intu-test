@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
-import Counter from 'views/components/Counter';
-import LapsList from 'views/components/LapsList';
-import styled from 'styled-components'
+import { Counter, Actions, LapsList } from 'views/components';
+import styled from 'styled-components';
 
 class Stopwatch extends Component {
 
-  constructor(){
-    super();
-
-    this.state = {
-      isStarted: false,
-      currentTime: 0,
-      laps: []
-    };
-
-    this.start = this.start.bind(this);
-    this.reset = this.reset.bind(this);
-    this.confirmLap = this.confirmLap.bind(this);
+  state = {
+    isStarted: false,
+    currentTime: 0,
+    laps: []
   };
 
-  start(isRunning){
+  start = isRunning => {
     this.setState({
       isStarted: !isRunning
     });
@@ -27,14 +18,14 @@ class Stopwatch extends Component {
       this.timer = setInterval(() => {
         this.setState({
           currentTime: this.state.currentTime + 10
-        })
+        });
       }, 10);
     } else {
       clearInterval(this.timer);
     }
-  }
+  };
 
-  reset(isReseted){
+  reset = isReseted => {
     clearInterval(this.timer);
     delete this.lastLapTime;
     this.setState({
@@ -44,7 +35,7 @@ class Stopwatch extends Component {
     });
   };
 
-  confirmLap(){
+  confirmLap = () => {
     if(!this.lastLapTime) {
       this.setState({
         laps: [this.state.currentTime, ...this.state.laps]
@@ -61,14 +52,15 @@ class Stopwatch extends Component {
     return (
       <Wrapper>
         <h1>Awesome Stopwatch</h1>
-        <Counter
+        <Counter currentTime={this.state.currentTime} />
+        <Actions
+          isStarted={this.state.isStarted}
           currentTime={this.state.currentTime}
           start={this.start}
-          reset={this.reset}
           confirmLap={this.confirmLap}
-          isStarted={this.state.isStarted}
-         />
-         <LapsList laps={this.state.laps} />
+          reset={this.reset}
+        />
+        <LapsList laps={this.state.laps} />
       </Wrapper>
     )
   };

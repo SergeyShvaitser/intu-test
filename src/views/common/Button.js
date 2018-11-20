@@ -1,22 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components'
 
-const Button = ({children, ...props}) => {
-  return (
-    <StyledButton {...props}>{children}</StyledButton>
-  )
-};
+class Button extends Component {
 
-Button.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  color: PropTypes.string,
-};
+  static propTypes = {
+    onClick: PropTypes.func.isRequired,
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  }
 
-Button.defaultProps = {
-  color: 'red',
-};
+  shouldComponentUpdate(nextProps){
+    if(this.props.disabled !== nextProps.disabled) return true
+    if(this.props.isStarted !== nextProps.isStarted) return true
+    return false
+  }
+
+  render(){
+    return (
+      <StyledButton {...this.props}>{this.props.children}</StyledButton>
+    )
+  }
+}
 
 export default Button;
 
