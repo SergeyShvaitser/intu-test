@@ -10,7 +10,7 @@ const Counter = ({currentTime, start, reset, confirmLap, isStarted}) => (
     <Actions>
       <Button onClick={() => start(isStarted)} isStarted={isStarted}>{isStarted ? 'Stop' : 'Start'}</Button>
       <Button onClick={confirmLap} disabled={!currentTime || !isStarted}>Lap</Button>
-      <Button onClick={reset}>Reset</Button>
+      <Button onClick={reset} disabled={!currentTime}>Reset</Button>
     </Actions>
   </div>
 );
@@ -26,8 +26,9 @@ Counter.propTypes = {
 export default Counter;
 
 const Time = styled.p`
+  width: 235px;
+  margin: 40px auto;
   font-size: 40px;
-  text-align: center;
   color: #426882db;
 `
 

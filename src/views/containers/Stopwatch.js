@@ -83,7 +83,7 @@ const Wrapper = styled.div`
 
   h1{
     text-align: center;
-    color: #3b09a785;
+    color: #0f8279f7;
     font-weight: 500;
   }
 `
